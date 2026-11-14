@@ -1,0 +1,300 @@
+{
+  "frameW": 256,
+  "frameH": 256,
+  "scale": 0.25,
+  "anchor": [
+    128,
+    244
+  ],
+  "peekVisible": 0.4,
+  "peekTop": 0.66,
+  "image": "sheet.png",
+  "image1x": "sheet@1x.png",
+  "columns": 8,
+  "tint": "volt",
+  "tints": {
+    "volt": {
+      "ten": "#4FB3FF",
+      "vurgu": "#8A4DFF",
+      "dolgu": "#7fa6ff"
+    },
+    "aura": {
+      "ten": "#1FC9BD",
+      "vurgu": "#9B6DFF",
+      "dolgu": "#bfe6ff"
+    },
+    "auraGece": {
+      "ten": "#35E6A0",
+      "vurgu": "#8E5BFF",
+      "dolgu": "#6fe0b8"
+    }
+  },
+  "statusColors": {
+    "bosta": "tint.ten",
+    "dusunuyor": "tint.vurgu",
+    "onay": "#FFC24D",
+    "hata": "#FF3B3B",
+    "uyku": "tint.ten",
+    "ciddi": "#4FB3FF"
+  },
+  "svgFrames": [
+    "idle-1.svg",
+    "idle-2.svg",
+    "idle-3.svg",
+    "idle-4.svg",
+    "idle-5.svg",
+    "idle-6.svg",
+    "walk-1.svg",
+    "walk-2.svg",
+    "walk-3.svg",
+    "walk-4.svg",
+    "walk-5.svg",
+    "walk-6.svg",
+    "walk-7.svg",
+    "walk-8.svg",
+    "hop-1.svg",
+    "hop-2.svg",
+    "hop-3.svg",
+    "hop-4.svg",
+    "hop-5.svg",
+    "hop-6.svg",
+    "hop-7.svg",
+    "hop-8.svg",
+    "climb-1.svg",
+    "climb-2.svg",
+    "climb-3.svg",
+    "climb-4.svg",
+    "fly-1.svg",
+    "fly-2.svg",
+    "fly-3.svg",
+    "fly-4.svg",
+    "peek-1.svg",
+    "peek-2.svg",
+    "peek-3.svg",
+    "peek_side-1.svg",
+    "peek_side-2.svg",
+    "peek_side-3.svg",
+    "peek_top-1.svg",
+    "peek_top-2.svg",
+    "peek_top-3.svg",
+    "hide-1.svg",
+    "hide-2.svg",
+    "hide-3.svg",
+    "sit-1.svg",
+    "sit-2.svg",
+    "sit-3.svg",
+    "wave-1.svg",
+    "wave-2.svg",
+    "wave-3.svg",
+    "wave-4.svg",
+    "think-1.svg",
+    "think-2.svg",
+    "think-3.svg",
+    "work-1.svg",
+    "work-2.svg",
+    "work-3.svg",
+    "work-4.svg",
+    "speak-1.svg",
+    "speak-2.svg",
+    "speak-3.svg",
+    "wait-1.svg",
+    "wait-2.svg",
+    "error-1.svg",
+    "error-2.svg",
+    "sleep-1.svg",
+    "sleep-2.svg",
+    "idle_serious-1.svg",
+    "idle_serious-2.svg",
+    "speak_serious-1.svg",
+    "speak_serious-2.svg"
+  ],
+  "animations": {
+    "idle": {
+      "frames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "fps": 4,
+      "loop": true
+    },
+    "walk": {
+      "frames": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "hop": {
+      "frames": [
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "fps": 10,
+      "loop": true
+    },
+    "climb": {
+      "frames": [
+        22,
+        23,
+        24,
+        25
+      ],
+      "fps": 6,
+      "loop": true
+    },
+    "fly": {
+      "frames": [
+        26,
+        27,
+        28,
+        29
+      ],
+      "fps": 10,
+      "loop": true
+    },
+    "peek": {
+      "frames": [
+        30,
+        31,
+        32
+      ],
+      "fps": 2,
+      "loop": true
+    },
+    "peek_side": {
+      "frames": [
+        33,
+        34,
+        35,
+        34
+      ],
+      "fps": 3,
+      "loop": true
+    },
+    "peek_top": {
+      "frames": [
+        36,
+        37,
+        38
+      ],
+      "fps": 2,
+      "loop": true
+    },
+    "hide": {
+      "frames": [
+        39,
+        40,
+        41
+      ],
+      "fps": 8,
+      "loop": false
+    },
+    "sit": {
+      "frames": [
+        42,
+        43,
+        44,
+        43
+      ],
+      "fps": 2,
+      "loop": true
+    },
+    "wave": {
+      "frames": [
+        45,
+        46,
+        47,
+        48
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "think": {
+      "frames": [
+        49,
+        50,
+        51,
+        50
+      ],
+      "fps": 3,
+      "loop": true
+    },
+    "work": {
+      "frames": [
+        52,
+        53,
+        54,
+        55
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "speak": {
+      "frames": [
+        56,
+        57,
+        58,
+        57
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "wait": {
+      "frames": [
+        59,
+        60
+      ],
+      "fps": 3,
+      "loop": true
+    },
+    "error": {
+      "frames": [
+        61,
+        62
+      ],
+      "fps": 4,
+      "loop": true
+    },
+    "sleep": {
+      "frames": [
+        63,
+        64
+      ],
+      "fps": 1.5,
+      "loop": true
+    },
+    "idle_serious": {
+      "frames": [
+        65,
+        66
+      ],
+      "fps": 2,
+      "loop": true
+    },
+    "speak_serious": {
+      "frames": [
+        67,
+        68
+      ],
+      "fps": 6,
+      "loop": true
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "zepul-yoldas",
+  "version": "1.0.0",
+  "description": "Masaüstü yoldaş karakter (Electron prototipi)",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "test": "node test.cjs",
+    "sprite": "node sprites/placeholder/uret.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "electron": "^44.5.1"
+  },
+  "private": true
+}

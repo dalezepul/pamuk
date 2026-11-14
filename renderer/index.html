@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; img-src 'self' file: data:; style-src 'self' 'unsafe-inline'">
+<title>Zepul yoldaş</title>
+<style>
+  :root {
+    --ten: #4FB3FF; --yavas: 1; /* --ten: Pamuk'un ten rengi (renderer ayarlar); --yavas: test için animasyon çarpanı */
+    --zemin: color-mix(in srgb, var(--ten) 7%, #ffffff); --yazi: #1d2233; --ince: color-mix(in srgb, var(--ten) 30%, rgba(30, 40, 70, .12));
+    --koyu-ten: color-mix(in srgb, var(--ten) 72%, #0f1f4a); --ikincil: color-mix(in srgb, var(--ten) 10%, #f3f5fa);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --zemin: color-mix(in srgb, var(--ten) 13%, #1b1f2b); --yazi: #edf0f7; --ince: color-mix(in srgb, var(--ten) 40%, rgba(255, 255, 255, .1));
+      --koyu-ten: color-mix(in srgb, var(--ten) 70%, #0b1430); --ikincil: color-mix(in srgb, var(--ten) 12%, #2a2f3d); }
+  }
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: transparent !important; user-select: none; }
+  #k { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+  #k3 { position: absolute; left: 0; top: 0; transform-origin: 50% 88%; will-change: transform; }
+
+  /* ---------- balon: #b konum (translate), #bk gövde (ölçek animasyonu, kuyruk tarafından büyür) ---------- */
+  #b { position: absolute; left: 0; top: 0; display: none; --kx: 50%; }
+  #b.acik { display: block; }
+  #bk {
+    position: relative; box-sizing: border-box; max-width: 270px; min-width: 150px; padding: 10px 14px 11px 12px; border-radius: 19px;
+    display: flex; gap: 10px; align-items: flex-start;
+    font: 13.5px/1.42 "Segoe UI Variable Text", "Segoe UI Variable", Inter, "Segoe UI", system-ui, sans-serif; color: var(--yazi);
+    background: var(--zemin); border: 1px solid var(--ince);
+    box-shadow: 0 10px 28px rgba(20, 30, 60, .16), 0 2px 7px rgba(20, 30, 60, .10);
+    transform-origin: var(--kx) calc(100% + 10px);
+    animation: ac calc(260ms * var(--yavas)) cubic-bezier(.34, 1.56, .64, 1) both;
+  }
+  #b.alt #bk { transform-origin: var(--kx) -10px; }
+  /* patlama: 90 ms şişme → gövde kaybolur, parçacıklar saçılır + ince halka dalgası (yalnız transform/opacity) */
+  #b.patla #bk { animation: sis calc(90ms * var(--yavas)) ease-out forwards; }
+  #b.patladi #bk { visibility: hidden; }
+  /* soru bekletilince / düşürülünce: patlamadan, kuyruğuna doğru yumuşakça küçülür */
+  #b.kucul #bk { animation: kucul calc(240ms * var(--yavas)) cubic-bezier(.4, 0, .7, .2) forwards; }
+  @keyframes kucul { to { transform: scale(.55); opacity: 0; } }
+  @keyframes sis { from { transform: scale(1); } to { transform: scale(1.06); } }
+  .parca { position: absolute; border-radius: 50%; pointer-events: none; animation: sac var(--sure) cubic-bezier(.15, .7, .3, 1) forwards; }
+  @keyframes sac { to { transform: translate(var(--dx), var(--dy)) scale(.15); opacity: 0; } }
+  .halka { position: absolute; box-sizing: border-box; border-radius: 19px; border: 2px solid var(--ten); pointer-events: none; opacity: .5;
+    animation: halka calc(260ms * var(--yavas)) ease-out forwards; }
+  @keyframes halka { to { transform: scale(1.4); opacity: 0; } }
+  /* karakterin irkilmesi (transform'dan bağımsız translate/scale özellikleri) */
+  #k.irkil, #k3.irkil { animation: irkil calc(260ms * var(--yavas)) ease-out; }
+  @keyframes irkil { 30% { translate: 0 -5px; scale: 1.07; } }
+  @keyframes ac { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  /* soru beklerken kenar yumuşakça nefes alır */
+  #bk::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none; box-shadow: 0 0 0 2px var(--ten); opacity: 0; }
+  #b.bekliyor #bk::after { animation: nefes calc(2s * var(--yavas)) ease-in-out infinite; }
+  @keyframes nefes { 50% { opacity: .55; } }
+  /* kuyruk: yuvarlatılmış, karaktere bakan */
+  #bq { position: absolute; left: var(--kx); bottom: -6px; width: 14px; height: 14px; margin-left: -7px; border-radius: 0 0 5px 0;
+    background: var(--zemin); border: solid var(--ince); border-width: 0 1px 1px 0; transform: rotate(45deg); }
+  #b.alt #bq { bottom: auto; top: -6px; transform: rotate(-135deg); }
+
+  #ba { width: 30px; height: 30px; border-radius: 50%; flex: none; object-fit: cover; position: relative; }
+  #bav { position: relative; flex: none; width: 30px; height: 30px; }
+  #bav:has(#ba[hidden]) { width: 18px; }
+  #bi { position: absolute; right: -5px; bottom: -4px; width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--zemin); color: var(--koyu-ten); box-shadow: 0 0 0 1.5px var(--zemin); }
+  #bi svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  #b.uyari #bi { color: #e0662f; }
+  #b.tamam #bi { color: #fff; background: #2fb46a; animation: pop calc(240ms * var(--yavas)) cubic-bezier(.34, 1.56, .64, 1); }
+  @keyframes pop { from { transform: scale(.4); } }
+  #bt { min-width: 0; flex: 1; }
+  #bm { overflow-wrap: anywhere; }
+  /* takip sorusu: eski içerik söner, balon yerinde kalır (yenisi balonGoster ile belirir) */
+  #b.degis #bt, #b.degis #bi { opacity: .25; transition: opacity calc(150ms * var(--yavas)); }
+  /* kaynak satırı: konu (ya da kaynak adı) + " · 2/3" — yoksa yer kaplamaz; nokta: zepul → ten, claude → sıcak ton, diğer → nötr */
+  #bky { display: flex; align-items: center; gap: 5px; margin: 1px 0 2px; font-size: 11px; line-height: 1.3; font-weight: 600; letter-spacing: .01em;
+    overflow-wrap: anywhere; opacity: 0; animation: kaynak calc(220ms * var(--yavas)) ease-out forwards; }
+  #bky:empty { display: none; }
+  #bky::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .45; }
+  #bky[data-k="zepul"]::before { background: var(--ten); opacity: 1; }
+  #bky[data-k="claude"]::before { background: #d97757; opacity: 1; }
+  @keyframes kaynak { from { opacity: 0; } to { opacity: .62; } }
+  #bm span { display: inline; opacity: 0; animation: satir calc(220ms * var(--yavas)) ease-out forwards; }
+  @keyframes satir { from { opacity: 0; filter: blur(2px); } to { opacity: 1; filter: none; } }
+
+  /* düğmeler: sırayla belirir, hover'da kalkar ve ısınır, basılır, dalga, seçilen öne çıkar */
+  #bd { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+  #bd:empty { display: none; }
+  #bd.cok button { flex-basis: calc(50% - 4px); } /* 3–4 düğme: iki satır */
+  #bd.uzun button { flex-basis: 100%; } /* >20 karakterlik etiket: düğme başına bir satır */
+  #bk:has(#bd.cok), #bk:has(#bd.uzun) { max-width: 300px; }
+  #bd button {
+    position: relative; overflow: hidden; flex: 1; font: inherit; font-size: 12.5px; font-weight: 600; padding: 5px 12px; border-radius: 12px; cursor: pointer; white-space: normal; overflow-wrap: anywhere;
+    border: 1px solid var(--ince); background: var(--ikincil); color: var(--yazi);
+    opacity: 0; animation: dugme calc(220ms * var(--yavas)) cubic-bezier(.2, .8, .3, 1.2) forwards;
+    transition: transform calc(140ms * var(--yavas)) ease, background-color calc(160ms * var(--yavas)) ease, opacity calc(200ms * var(--yavas)) ease, box-shadow calc(160ms * var(--yavas)) ease;
+  }
+  #bd button:first-child { background: var(--koyu-ten); border-color: transparent; color: #fff; }
+  #bd button:hover, #bd button.hover { transform: translateY(-1.5px); box-shadow: 0 4px 10px rgba(20, 30, 60, .16); }
+  #bd button:first-child:hover, #bd button:first-child.hover { filter: brightness(1.12) saturate(1.15); }
+  #bd button:not(:first-child):hover, #bd button:not(:first-child).hover { background: color-mix(in srgb, var(--ten) 24%, var(--ikincil)); }
+  #bd button:active { transform: scale(.94); }
+  #bd button:focus-visible { outline: 2px solid var(--ten); outline-offset: 2px; }
+  #bd button.secili { background: #2fb46a !important; color: #fff; transform: scale(1.03); }
+  #bd button.soluk { opacity: .35 !important; transform: scale(.96); }
+  @keyframes dugme { from { opacity: 0; transform: translateY(5px) scale(.96); } to { opacity: 1; transform: none; } }
+  .dalga { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: rgba(255, 255, 255, .55); pointer-events: none;
+    animation: dalga calc(420ms * var(--yavas)) ease-out forwards; }
+  @keyframes dalga { to { transform: scale(14); opacity: 0; } }
+
+  /* az hareket: sistem tercihi ya da ayarlardaki "Az hareket" */
+  @media (prefers-reduced-motion: reduce) { #b *, #b *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; } }
+  html.az #b *, html.az #b *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+</style>
+</head>
+<body>
+<canvas id="k"></canvas>
+<canvas id="k3" hidden></canvas>
+<div id="b" role="status" aria-live="polite"><div id="bk"><div id="bav"><img id="ba" alt="" hidden><span id="bi" aria-hidden="true"></span></div><div id="bt"><div id="bky"></div><div id="bm"></div><div id="bd"></div></div><div id="bq"></div></div></div>
+<script src="sprite.js"></script>
+<script src="behavior.js"></script>
+</body>
+</html>

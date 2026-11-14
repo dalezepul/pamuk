@@ -1,0 +1,172 @@
+{
+  "frameW": 64,
+  "frameH": 64,
+  "scale": 1,
+  "anchor": [
+    32,
+    61
+  ],
+  "peekVisible": 0.4,
+  "svgFrames": [
+    "idle-1.svg",
+    "idle-2.svg",
+    "idle-3.svg",
+    "idle-4.svg",
+    "walk-1.svg",
+    "walk-2.svg",
+    "walk-3.svg",
+    "walk-4.svg",
+    "walk-5.svg",
+    "walk-6.svg",
+    "climb-1.svg",
+    "climb-2.svg",
+    "climb-3.svg",
+    "climb-4.svg",
+    "peek-1.svg",
+    "peek-2.svg",
+    "hide-1.svg",
+    "hide-2.svg",
+    "hide-3.svg",
+    "sit-1.svg",
+    "sit-2.svg",
+    "wave-1.svg",
+    "wave-2.svg",
+    "wave-3.svg",
+    "wave-4.svg",
+    "think-1.svg",
+    "think-2.svg",
+    "work-1.svg",
+    "work-2.svg",
+    "work-3.svg",
+    "work-4.svg",
+    "speak-1.svg",
+    "speak-2.svg",
+    "speak-3.svg",
+    "wait-1.svg",
+    "wait-2.svg",
+    "error-1.svg",
+    "error-2.svg",
+    "sleep-1.svg",
+    "sleep-2.svg"
+  ],
+  "animations": {
+    "idle": {
+      "frames": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "walk": {
+      "frames": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "fps": 10,
+      "loop": true
+    },
+    "climb": {
+      "frames": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "peek": {
+      "frames": [
+        14,
+        15
+      ],
+      "fps": 2,
+      "loop": true
+    },
+    "hide": {
+      "frames": [
+        16,
+        17,
+        18
+      ],
+      "fps": 8,
+      "loop": false
+    },
+    "sit": {
+      "frames": [
+        19,
+        20
+      ],
+      "fps": 2,
+      "loop": true
+    },
+    "wave": {
+      "frames": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "think": {
+      "frames": [
+        25,
+        26
+      ],
+      "fps": 3,
+      "loop": true
+    },
+    "work": {
+      "frames": [
+        27,
+        28,
+        29,
+        30
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "speak": {
+      "frames": [
+        31,
+        32,
+        33
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "wait": {
+      "frames": [
+        34,
+        35
+      ],
+      "fps": 3,
+      "loop": true
+    },
+    "error": {
+      "frames": [
+        36,
+        37
+      ],
+      "fps": 6,
+      "loop": true
+    },
+    "sleep": {
+      "frames": [
+        38,
+        39
+      ],
+      "fps": 1.5,
+      "loop": true
+    }
+  }
+}
